@@ -1,7 +1,24 @@
+{% extends "base_appointment.html" %}
 
+{% block content %}
 
 <form action="{% url 'appointment:set_appointment' %}" method="post">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
+    <table>
+        <tr>
+            <td>{{ form.appointment_time.label_tag }}</td>
+            <td>{{ form.appointment_time }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.state.label_tag }}</td>
+            <td>{{ form.state }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.appointment_maker.label_tag }}</td>
+            <td>{{ form.appointment_maker }}</td>
+        </tr>
+    </table>
+    <input type="submit" value="确认">
 </form>
+
+{% endblock %}

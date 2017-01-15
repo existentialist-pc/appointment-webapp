@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import datetime
 
 # Create your models here.
@@ -15,8 +16,8 @@ class AppointmentInformation(models.Model):
     name = models.CharField('姓名', max_length=64)
     mobile_number = models.CharField('手机号码', max_length=16)
 
-
-class User(models.Model):
+'''
+class User(User):  # 拓展用自带User类，并设定用户发起Appointment权限。
     email = models.EmailField('电子邮箱', max_length=64)
     username = models.CharField('用户名', max_length=64)
     password = models.CharField('密码', max_length=32)
@@ -24,6 +25,7 @@ class User(models.Model):
 
     def __str__(self):
         return '<User username:%s>' % self.username
+'''
 
 
 class Appointment(models.Model):

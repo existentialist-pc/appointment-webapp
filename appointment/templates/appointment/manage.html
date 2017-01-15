@@ -1,0 +1,44 @@
+{% extends "base_appointment.html" %}
+
+{% block content %}
+<div id="content-main">
+
+{% if appointments %}
+    <div>
+        <a href="{% url 'appointment:set_appointment' %}">去创建空闲预约时间<br></a>
+    </div>
+    <table>
+        <tr>
+            <th scope="row">预约时间</th>
+            <th scope="row">预约状态</th>
+            <th scope="row">预约创建人</th>
+            <th scope="row">操作</th>
+        </tr>
+        {% for appointment in appointments %}
+        <tr>
+            <td><span>{{ appointment.appointment_time }}</span></td>
+            <td>
+                {% if appointment.appointment_information %}
+                <a href="{% url 'appointment:appointment_info_applied' appointment.appointment_information.id %}">
+                    {{ appointment.get_state_display }} | 查看预约内容
+                </a>
+                {% else %}
+                <span>{{ appointment.get_state_display }}</span>
+                {% endif %}
+            </td>
+            <td><span>{{ appointment.appointment_maker }}<span></td>
+            <td>
+                <a href="#" class="addlink">确认</a>
+                <a href="#" class="">取消</a>
+                <a href="#" class="">禁止</a>
+                <a href="#" class="">恢复</a>
+                <a href="#" class="changelink">修改预约时间</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>没有预约，去<a href="{% url 'appointment:set_appointment' %}">创建一个预约时间</a>吧！<br></p>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base_appointment.html" %}
+
+{% block content %}
+
+    <h1>申请预约相关信息</h1>
+    <p><h2>{{ appointment_info.subject }}</h2></p>
+    <p>{{ appointment_info.name }} | {{ appointment_info.email }} | {{ appointment_info.mobile_number }}</p>
+    <p>{{ appointment_info.description }}</p>
+
+{% endblock %}
